@@ -207,6 +207,7 @@ nav + .container {
 
 /* TO DO -- make banner image fit width of page */
 #banner-image {
+  width: 100%;
   height: 360px;
 }
 
