@@ -3,8 +3,8 @@
 {% block content %}
 
 <div id="warbler-hero"
-     class="full-width">
-     <img id="banner-image" src="{{ user.header_image_url }}" alt="Banner image for profile">
+     class="full-width" style="background-image: url('{{ user.header_image_url }}')">
+     <!-- <img id="banner-image" src="{{ user.header_image_url }}" alt="Banner image for profile"> -->
 </div>
 <img src="{{ user.image_url }}"
      alt="Image for {{ user.username }}"
