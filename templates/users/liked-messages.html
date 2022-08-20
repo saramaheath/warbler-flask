@@ -39,6 +39,14 @@
                 </a>
               </h4>
             </li>
+            <li class="stat">
+              <p class="small">Likes</p>
+              <h4>
+                <a href="/users/{{ g.user.id }}/liked-messages">
+                  {{ g.user.liked_messages | length }}
+                </a>
+              </h4>
+            </li>
           </ul>
         </div>
       </div>

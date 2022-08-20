@@ -39,12 +39,21 @@
                 </a>
               </h4>
             </li>
+            <li class="stat">
+              <p class="small">Likes</p>
+              <h4>
+                <a href="/users/{{ g.user.id }}/liked-messages">
+                  {{ g.user.liked_messages | length }}
+                </a>
+              </h4>
+            </li>
           </ul>
         </div>
       </div>
     </aside>
 
     <div class="col-lg-6 col-md-8 col-sm-12">
+      <h3>Following Warbles</h3>
       <ul class="list-group" id="messages">
         {% for msg in messages %}
           <li class="list-group-item">

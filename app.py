@@ -322,6 +322,17 @@ def add_message():
 
     return render_template('messages/create.html', form=form)
 
+@app.get('/messages')
+def show_all_messages():
+    """Show all messages."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    user = g.user
+    messages = Message.query.all()
+    return render_template('discover.html', messages=messages, user=user)
 
 @app.get('/messages/<int:message_id>')
 def show_message(message_id):
@@ -357,6 +368,7 @@ def delete_message(message_id):
 
 ##############################################################################
 # Adding and removing likes to messages
+
 
 @app.post("/messages/<int:message_id>/add-like")
 def add_like_to_message(message_id):

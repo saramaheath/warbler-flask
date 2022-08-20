@@ -37,7 +37,7 @@
             {% endif %}
 
           </div>
-          <p class="card-bio">{{ followed_user.bio }}</p>
+          <p class="card-bio">{{ followed_user.bio|truncate(100) }}</p>
         </div>
       </div>
     </div>
