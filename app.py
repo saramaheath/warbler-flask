@@ -244,9 +244,7 @@ def stop_following(follow_id):
 def profile(user_id):
     """Update profile for current user."""
 
-    # IMPLEMENT THIS
     if not g.user and user_id == g.user.id:
-        # check user id is same as current user
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -322,6 +320,7 @@ def add_message():
 
     return render_template('messages/create.html', form=form)
 
+
 @app.get('/messages')
 def show_all_messages():
     """Show all messages."""
@@ -331,8 +330,9 @@ def show_all_messages():
         return redirect("/")
 
     user = g.user
-    messages = Message.query.all()
+    messages = Message.query.order_by(Message.timestamp.desc()).limit(100).all()
     return render_template('discover.html', messages=messages, user=user)
+
 
 @app.get('/messages/<int:message_id>')
 def show_message(message_id):
