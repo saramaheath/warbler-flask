@@ -135,7 +135,7 @@ def logout():
         flash(f"User is logged out", "info")
         return redirect("/login")
 
-    #redirect if either if's dont pass
+    # redirect if either if's dont pass
     # ask is the line below necessary
     return redirect("/")
 
@@ -159,7 +159,7 @@ def list_users():
     if not search:
         users = User.query.all()
     else:
-        users = User.query.filter(User.username.like(f"%{search}%")).all()
+        users = User.query.filter(User.username.ilike(f"%{search}%")).all()
 
     return render_template('users/index.html', users=users)
 
@@ -246,7 +246,7 @@ def profile(user_id):
 
     # IMPLEMENT THIS
     if not g.user and user_id == g.user.id:
-        #check user id is same as current user
+        # check user id is same as current user
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -374,6 +374,7 @@ def add_like_to_message(message_id):
 
     return redirect('/')
 
+
 @app.post("/messages/<int:message_id>/remove-like")
 def removes_like_from_message(message_id):
     """removes a like from message redirects to homepage"""
@@ -388,7 +389,6 @@ def removes_like_from_message(message_id):
         db.session.commit()
 
     return redirect('/')
-
 
 
 #  adding & removing likes from profile page
@@ -407,6 +407,7 @@ def add_like_to_message_on_user_profile(message_id, user_id):
         db.session.commit()
 
     return redirect(f'/users/{user_id}')
+
 
 @app.post("/messages/<int:message_id>/remove-like-from-<int:user_id>")
 def removes_like_from_message_on_user_profile(message_id, user_id):
@@ -437,9 +438,8 @@ def show_liked_messages(user_id):
     return render_template("users/liked-messages.html", user_liked_messages=user_liked_messages)
 
 
-
-## go to back where user came from after they like a message
-##hidden input field to form, pass location to form *idea*
+# go to back where user came from after they like a message
+# hidden input field to form, pass location to form *idea*
 
 ##############################################################################
 # Homepage and error pages
@@ -463,6 +463,7 @@ def homepage():
                     .order_by(Message.timestamp.desc())
                     .limit(100).all())
 
+        #messages = Message.query.all()
         return render_template('home.html', messages=messages, user=user)
 
     else:
